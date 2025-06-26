@@ -12,8 +12,8 @@ Azure Cloud Shell (Bash). In order to achieve the best performance, create all r
 ## Preview
 - [Step 1: Prepare your environment](#step-1-prepare-your-environment)
 - [Step 2: Create a AKS Cluster ](#step-2-create-k8s-cluster-aks)
-- [Step 3: Download Spatial Enrich Dashboard Docker Images](#step-3-download-private-spatial-apis-docker-images)
-- [Step 4: Installation of Spatial Enrich Dashboard Helm Chart](#step-4-installation-of-private-spatial-apis-helm-chart)
+- [Step 3: Download Spatial Enrich Dashboard Docker Images](#step-3-download-spatial-enrich-dashboard-docker-images)
+- [Step 4: Installation of Spatial Enrich Dashboard Helm Chart](#step-4-installation-of-spatial-enrich-dashboard-helm-chart)
 
 ## Step 1: Prepare your environment
 To deploy Spatial Enrich Dashboard application in Azure AKS, install the following client tools on you machine:

@@ -3,7 +3,7 @@
 
 1. **Flexibility of deployment**
 
-   Private Spatial APIs are delivered as separate microservices in multiple Kubernetes pods using container-based delivery.
+   Spatial Enrich Dashboard are delivered as separate microservices in multiple Kubernetes pods using container-based delivery.
    Containers are orchestrated by Kubernetes with efficient distribution of workloads across a cluster of computers.
 
 2. **Elastic scaling and clusterings**
@@ -46,10 +46,10 @@ Install Client tools required for installation. Click on the link to get steps f
 Create or use an existing K8s cluster. Click on the link to get steps for specific cloud platform:
 [EKS](./docs/guides/eks/QuickStartEKS.md#step-2-create-k8s-cluster-eks) | [GKE](./docs/guides/gke/QuickStartGKE.md#step-2-create-k8s-cluster-gke) | [AKS](./docs/guides/aks/QuickStartAKS.md#step-2-create-k8s-cluster-aks)
 
-### 3. Download Private Spatial APIs Images
+### 3. Download spatial Enrich Dashboard Images
 Download docker images and upload to own container registry. Click on the link to get steps for specific cloud platform:
-[EKS](./docs/guides/eks/QuickStartEKS.md#step-3-download-private-spatial-apis-docker-images) | [GKE](./docs/guides/gke/QuickStartGKE.md#step-3-download-private-spatial-apis-docker-images) | [AKS](./docs/guides/aks/QuickStartAKS.md#step-3-download-private-spatial-apis-docker-images)
+[EKS](./docs/guides/eks/QuickStartEKS.md#step-3-download-spatial-enrich-dashboard-docker-images) | [GKE](./docs/guides/gke/QuickStartGKE.md#step-3-download-spatial-enrich-dashboard-docker-images) | [AKS](./docs/guides/aks/QuickStartAKS.md#step-3-download-spatial-enrich-dashboard-docker-images)
 
 ### 4. Install Spatial Enrich Dashboard Helm Chart
-Deploy Private Spatial APIs chart to K8s cluster. Click on the link to get steps for specific cloud platform:
-[EKS](./docs/guides/eks/QuickStartEKS.md#step-4-installation-of-private-spatial-apis-helm-chart) | [GKE](./docs/guides/gke/QuickStartGKE.md#step-4-installation-of-private-spatial-apis-helm-chart) | [AKS](./docs/guides/aks/QuickStartAKS.md#step-4-installation-of-private-spatial-apis-helm-chart)
+Deploy Spatial Enrich Dashboard chart to K8s cluster. Click on the link to get steps for specific cloud platform:
+[EKS](./docs/guides/eks/QuickStartEKS.md#step-4-installation-of-spatial-enrich-dashboard-helm-chart) | [GKE](./docs/guides/gke/QuickStartGKE.md#step-4-installation-of-spatial-enrich-dashboard-helm-chart) | [AKS](./docs/guides/aks/QuickStartAKS.md#step-4-installation-of-spatial-enrich-dashboard-helm-chart)

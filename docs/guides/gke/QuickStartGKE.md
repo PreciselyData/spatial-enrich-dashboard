@@ -112,11 +112,6 @@ gcloud artifacts repositories delete spatial-repo --location=<your region>
 ### Deploy Spatial Enrich Dashboard
 
 ```
-helm install spatial ~/Private-Spatial-APIs/charts/private-spatial-apis \
-     -f ~/Private-Spatial-APIs/deploy/gitlab-deployment-small-values.yaml \
-     --set global.registry.secrets=null \
-     --set global.registry.url=<your registry url>
-
 helm install spatial-dashboard ~/spatial-enrich-dashboard/helm/superset \
  -f ~/spatial-enrich-dashboard/helm/superset/values.yaml \
  --set "image.repository=<your registry url> \
