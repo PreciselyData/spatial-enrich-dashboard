@@ -201,8 +201,8 @@ initImage:
   pullPolicy: IfNotPresent
 
 service:
-  type: ClusterIP
-  port: 8088
+  type: LoadBalancer
+  port: 80
   annotations: {}
     # cloud.google.com/load-balancer-type: "Internal"
   loadBalancerIP: ~

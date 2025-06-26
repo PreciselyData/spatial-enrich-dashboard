@@ -32,3 +32,24 @@
 
 > [!IMPORTANT]  
 > Please consider these helm charts as recommendations only. They come with predefined configurations that may not be the best fit for your needs. Configurations can be tweaked based on the use case and requirements.
+
+## Guides
+- Quickstart Guide: [EKS](./docs/guides/eks/QuickStartEKS.md) | [GKE](./docs/guides/gke/QuickStartGKE.md) | [AKS](./docs/guides/aks/QuickStartAKS.md)
+- Uninstall Guide: [EKS](./docs/guides/eks/UninstallGuide.md) | [GKE](./docs/guides/gke/UninstallGuide.md) | [AKS](./docs/guides/aks/UninstallGuide.md) 
+
+## Installing Spatial Enrich dashboard Chart
+### 1. Prepare your environment
+Install Client tools required for installation. Click on the link to get steps for specific cloud platform:
+[EKS](./docs/guides/eks/QuickStartEKS.md#step-1-prepare-your-environment) | [GKE](./docs/guides/gke/QuickStartGKE.md#step-1-setup-cloud-shell) | [AKS](./docs/guides/aks/QuickStartAKS.md#step-1-prepare-your-environment)
+
+### 2. Create K8s cluster
+Create or use an existing K8s cluster. Click on the link to get steps for specific cloud platform:
+[EKS](./docs/guides/eks/QuickStartEKS.md#step-2-create-k8s-cluster-eks) | [GKE](./docs/guides/gke/QuickStartGKE.md#step-2-create-k8s-cluster-gke) | [AKS](./docs/guides/aks/QuickStartAKS.md#step-2-create-k8s-cluster-aks)
+
+### 3. Download Private Spatial APIs Images
+Download docker images and upload to own container registry. Click on the link to get steps for specific cloud platform:
+[EKS](./docs/guides/eks/QuickStartEKS.md#step-3-download-private-spatial-apis-docker-images) | [GKE](./docs/guides/gke/QuickStartGKE.md#step-3-download-private-spatial-apis-docker-images) | [AKS](./docs/guides/aks/QuickStartAKS.md#step-3-download-private-spatial-apis-docker-images)
+
+### 4. Install Spatial Enrich Dashboard Helm Chart
+Deploy Private Spatial APIs chart to K8s cluster. Click on the link to get steps for specific cloud platform:
+[EKS](./docs/guides/eks/QuickStartEKS.md#step-4-installation-of-private-spatial-apis-helm-chart) | [GKE](./docs/guides/gke/QuickStartGKE.md#step-4-installation-of-private-spatial-apis-helm-chart) | [AKS](./docs/guides/aks/QuickStartAKS.md#step-4-installation-of-private-spatial-apis-helm-chart)
