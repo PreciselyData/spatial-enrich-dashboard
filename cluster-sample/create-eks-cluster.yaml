@@ -2,9 +2,9 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: spatial-analytics
-  region: us-east-1
-  version: "1.32"
+  name: spatial-dashboard
+  region: us-east-2
+  version: "1.33"
 
 addons:
   - name: vpc-cni
@@ -14,7 +14,7 @@ addons:
   - name: aws-ebs-csi-driver
 
 managedNodeGroups:
-  - name: spatial-analytics-worker
+  - name: spatial-dashboard-worker
     instanceType: c7a.xlarge
     minSize: 1
     maxSize: 5
@@ -43,11 +43,11 @@ managedNodeGroups:
         cloudWatch: true
 
     volumeSize: 100
-    labels: { node-app: spatial-analytics }
+    labels: { node-app: spatial-dashboard }
     tags:
       CreatedBy: Precisely
 
-  - name: spatial-analytics-ingress
+  - name: spatial-dashboard-ingress
     instanceType: m5n.xlarge
     iam:
       attachPolicyARNs:
@@ -72,7 +72,7 @@ managedNodeGroups:
         albIngress: true
         cloudWatch: true
     desiredCapacity: 1
-    labels: { node-app: spatial-analytics-ingress }
+    labels: { node-app: spatial-dashboard-ingress }
     volumeSize: 50
     tags:
       CreatedBy: Precisely

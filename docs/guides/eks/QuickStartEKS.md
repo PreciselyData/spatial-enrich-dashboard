@@ -72,23 +72,30 @@ You can create the EKS cluster or use an existing EKS cluster.
 
 ## Step 3: Download Spatial Enrich Dashboard Docker Images
 
-The Spatial Enrich Dashboard docker images need to be present in the ECR. If you haven't pushed the required docker images to ECR, then you you need to create the ECR and push the provided images to the ECR.
+The Spatial Enrich Dashboard docker images need to be present in the ECR. If you haven't pushed the required docker images to ECR, then you you need to create the ECR with the repository name spatial-enrich-dashboard and push the provided images to the ECR.
 
 ## Step 4: Installation of Spatial Enrich Dashboard Helm Chart
 
+Create a namespace in the cluster for deploying the dashboard
+
+```shell
+kubectl create ns spatial-dashboard
+```
+
 Create a secret for pulling image from ECR repository  
 ```shell
-kubectl create secret docker-registry regcred --docker-server=[account_id].dkr.ecr.[aws_region].amazonaws.com   --docker-username=AWS   --docker-password=$(aws ecr get-login-password --region [aws-reqion]) --namespace=spatial-analytics
+kubectl create secret docker-registry regcred --docker-server=[account_id].dkr.ecr.[aws_region].amazonaws.com   --docker-username=AWS   --docker-password=$(aws ecr get-login-password --region [aws-region]) --namespace=spatial-dashboard
 ```
 To install/upgrade the Spatial Enrich Dashboard helm chart, use the following command:
 
 helm install spatial-dashboard ~/spatial-enrich-dashboard/helm/superset \
  -f ~/spatial-enrich-dashboard/helm/superset/values.yaml \
- --set "image.repository=[acr].azurecr.io/spatial-enrich-dashboard" \
+ --set "image.repository=[account_id].dkr.ecr.[aws_region].amazonaws.com/spatial-enrich-dashboard" \
  --set "image.tag=latest" \ 
- --set "imagePullSecrets=regcred" \  
+ --set "imagePullSecrets[0].name=regcred" \  
  --namespace spatial-dashboard   
 ```
+> Note: Dashboard and custom charts will be deleted in case of postgresql pod dies so make sure to export the dashboard after creation .
 
 #### Mandatory Parameters
 * ``image.repository``: The ACR repository for Spatial Enrich Dashboard docker image e.g. spatialregistry.azurecr.io
@@ -100,4 +107,8 @@ Once you run Spatial Enrich Dashboard helm install/upgrade command, it might tak
 kubectl get pods -w --namespace spatial-dashboard 
 ```
 
-After all the pods in namespace 'spatial-analytics' are in 'ready' status, launch dashboard in a browser with the URL `https://<your external ip>`
+After all the pods in namespace 'spatial-dashboard' are in 'ready' status, launch dashboard in a browser with the URL `https://<your external ip>`, which can be found by running the command 
+
+```
+kubectl get svc -n spatial-dashboard
+```

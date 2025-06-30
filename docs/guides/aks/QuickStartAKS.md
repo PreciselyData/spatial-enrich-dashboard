@@ -160,6 +160,12 @@ spatial-enrich-dashboard docker images which will be pushed to container registr
 
 ## Step 4: Installation of Spatial Enrich Dashboard Helm Chart
 
+Create a namespace in the cluster for deploying the dashboard
+
+```shell
+kubectl create ns spatial-dashboard
+```
+
 Create a secret for pulling image from ACR:
 \
 Following command gets a token for current user to authenticate against ACR, if you want to use a service principal credentials, refer to [Use Service principal](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-auth-kubernetes).
@@ -180,9 +186,10 @@ helm install spatial-dashboard ~/spatial-enrich-dashboard/helm/superset \
  -f ~/spatial-enrich-dashboard/helm/superset/values.yaml \
  --set "image.repository=[acr].azurecr.io/spatial-enrich-dashboard" \
  --set "image.tag=latest" \ 
- --set "imagePullSecrets=regcred" \  
+ --set "imagePullSecrets[0].name=regcred" \  
  --namespace spatial-dashboard   
 ```
+> Note: Dashboard and custom charts will be deleted in case of postgresql pod dies so make sure to export the dashboard after creation .
 
 #### Mandatory Parameters
 * ``image.repository``: The ACR repository for Spatial Enrich Dashboard docker image e.g. spatialregistry.azurecr.io
@@ -194,4 +201,8 @@ Once you run Spatial Enrich Dashboard helm install/upgrade command, it might tak
 kubectl get pods -w --namespace spatial-dashboard 
 ```
 
-After all the pods in namespace 'spatial-analytics' are in 'ready' status, launch dashboard in a browser with the URL `https://<your external ip>`
+After all the pods in namespace 'spatial-dashboard' are in 'ready' status, launch dashboard in a browser with the URL `https://<your external ip>`, which can be found by running the command 
+
+```
+kubectl get svc -n spatial-dashboard
+```

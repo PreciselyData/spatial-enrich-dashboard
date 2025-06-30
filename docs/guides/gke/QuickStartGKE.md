@@ -118,9 +118,15 @@ helm install spatial-dashboard ~/spatial-enrich-dashboard/helm/superset \
  --set "image.tag=latest" \ 
  --set "imagePullSecrets=null" \  
 ```
+> Note: Dashboard and custom charts will be deleted in case of postgresql pod dies so make sure to export the dashboard after creation .
+
 Wait until all services are ready. It may take 5 to 8 minutes to get ready for the first time. 
 ```
-kubectl get pod
+kubectl get pod 
 ```
 
-After all the pods in namespace 'spatial-analytics' are in 'ready' status, launch dashboard in a browser with the URL `https://<your external ip>`.
+After all the pods in namespace 'spatial-dashboard' are in 'ready' status, launch dashboard in a browser with the URL `https://<your external ip>`, which can be found by running the command 
+
+```
+kubectl get svc -n spatial-dashboard
+```
