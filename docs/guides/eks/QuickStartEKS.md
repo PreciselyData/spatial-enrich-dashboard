@@ -88,6 +88,7 @@ kubectl create secret docker-registry regcred --docker-server=[account_id].dkr.e
 ```
 To install/upgrade the Spatial Enrich Dashboard helm chart, use the following command:
 
+```shell
 helm install spatial-dashboard ~/spatial-enrich-dashboard/helm/superset \
  -f ~/spatial-enrich-dashboard/helm/superset/values.yaml \
  --set "image.repository=[account_id].dkr.ecr.[aws_region].amazonaws.com/spatial-enrich-dashboard" \
@@ -95,7 +96,7 @@ helm install spatial-dashboard ~/spatial-enrich-dashboard/helm/superset \
  --set "imagePullSecrets[0].name=regcred" \  
  --namespace spatial-dashboard   
 ```
-> Note: Dashboard and custom charts will be deleted in case of postgresql pod dies so make sure to export the dashboard after creation .
+> Note: Dashboard and custom charts will be deleted in case of postgresql pod dies so make sure to export the dashboard after creation.
 
 #### Mandatory Parameters
 * ``image.repository``: The ACR repository for Spatial Enrich Dashboard docker image e.g. spatialregistry.azurecr.io
