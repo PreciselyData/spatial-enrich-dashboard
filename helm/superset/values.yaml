@@ -208,7 +208,7 @@ service:
   loadBalancerIP: ~
   nodePort:
     # -- (int)
-    http: nil
+    http: 30001
 
 ingress:
   enabled: false
