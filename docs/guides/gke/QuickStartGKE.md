@@ -52,7 +52,7 @@ gcloud config list
 
 Create GKE cluster (autopilot) named spatial-cloud-native. You can specify different project and region with `--project` and `--region`.
 ```
-gcloud container clusters create-auto spatial-cloud-native --region us-east1 --cluster-version 1.29.1
+gcloud container clusters create-auto spatial-dashboard --region us-east1 --cluster-version 1.33
 ```
 It may take few minutes to create the cluster. Wait until the command finished.
 ```
@@ -92,6 +92,8 @@ Run the shell scripts to load images to artifact registry,
 ```
 chmod a+x ~/spatial-enrich-dashboard/scripts/gke/push-images.sh
 ```
+> Note: Make sure to adjust the spatial-enrich-dashboard path with respect to your setup.
+
 ```
 ~/spatial-enrich-dashboard/scripts/gke/push-images.sh <your registry url>
 ```
@@ -111,6 +113,7 @@ gcloud artifacts repositories delete spatial-repo --location=<your region>
 
 ### Deploy Spatial Enrich Dashboard
 
+
 ```
 helm install spatial-dashboard ~/spatial-enrich-dashboard/helm/superset \
  -f ~/spatial-enrich-dashboard/helm/superset/values.yaml \
@@ -118,15 +121,18 @@ helm install spatial-dashboard ~/spatial-enrich-dashboard/helm/superset \
  --set "image.tag=latest" \ 
  --set "imagePullSecrets=null" \  
 ```
-> Note: Dashboard and custom charts will be deleted in case of postgresql pod dies so make sure to export the dashboard after creation .
+> Note: Make sure to adjust the spatial-enrich-dashboard path with respect to your setup.
+
+> Note: Dashboard and custom charts will be deleted in case of postgresql pod dies so make sure to export the dashboard after creation.
 
 Wait until all services are ready. It may take 5 to 8 minutes to get ready for the first time. 
 ```
 kubectl get pod 
 ```
 
-After all the pods in namespace 'spatial-dashboard' are in 'ready' status, launch dashboard in a browser with the URL `https://<your external ip>`, which can be found by running the command 
+After all the pods in namespace 'spatial-dashboard' are in 'ready' status, launch dashboard in a browser with the URL `http://<your external ip>`, which can be found by running the command 
 
 ```
 kubectl get svc -n spatial-dashboard
 ```
+> Note: If the application does not load on the http protocol try with https as well.

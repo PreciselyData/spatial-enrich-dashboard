@@ -152,6 +152,8 @@ cd <spatial_analytics_docker_images_dir>
 chmod a+x ~/spatial-enrich-dashboard/scripts/aks/push-images.sh
 ~/spatial-enrich-dashboard/scripts/aks/push-images.sh <azure_container_registry>.azurecr.io
 ```
+> Note: Make sure to adjust the spatial-enrich-dashboard path with respect to your setup.
+
 List images in the registry:
 \
 ``az acr repository list --name <azure_container_registry> --output table``
@@ -189,6 +191,8 @@ helm install spatial-dashboard ~/spatial-enrich-dashboard/helm/superset \
  --set "imagePullSecrets[0].name=regcred" \  
  --namespace spatial-dashboard   
 ```
+> Note: Make sure to adjust the spatial-enrich-dashboard path with respect to your setup.
+
 > Note: Dashboard and custom charts will be deleted in case of postgresql pod dies so make sure to export the dashboard after creation.
 
 #### Mandatory Parameters
@@ -202,6 +206,8 @@ kubectl get pods -w --namespace spatial-dashboard
 ```
 
 After all the pods in namespace 'spatial-dashboard' are in 'ready' status, launch dashboard in a browser with the URL `https://<your external ip>`, which can be found by running the command 
+
+> Note: If the application does not load on the http protocol try with https as well.
 
 ```
 kubectl get svc -n spatial-dashboard
