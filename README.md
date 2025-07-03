@@ -1,55 +1,63 @@
-# spatial-enrich-dashboard
-## Motivation
+# Spatial Enrich Dashboard
 
-1. **Flexibility of deployment**
+## 🚀 Motivation
 
-   Spatial Enrich Dashboard are delivered as separate microservices in multiple Kubernetes pods using container-based delivery.
-   Containers are orchestrated by Kubernetes with efficient distribution of workloads across a cluster of computers.
+### 1. **Flexible Deployment**
+Spatial Enrich Dashboard is delivered as a set of microservices running in individual Kubernetes pods via container-based delivery.  
+These containers are orchestrated by Kubernetes, ensuring efficient workload distribution across a cluster.
 
-2. **Elastic scaling and clusterings**
+### 2. **Elastic Scaling & Clustering**
+Scale environments based on usage:
+- Scale for high daytime application load.
+- Manually or auto-scale via CLI or Kubernetes dashboard.
 
-   Scale according to use cases (for example environments can scale up for overnight tile caching, scale up to meet
-   application usage during the day). Autoscaling or manual scaling via command line or K8s dashboard. Major APIs
-   such as Mapping, Tiling and Feature services can be separately scaled to match requirements.
+### 3. **High Availability**
+- Kubernetes ensures pod health checks and auto-recovery for mission-critical scenarios.
+- Leverages K8s monitoring tools to track resource usage and availability.
 
-3. **High availability**
+### 4. **Automated Rollbacks & Rollouts**
+- Deploy from container registries.
+- Kubernetes allows progressive rollout of updates and changes.
+- In case of failure, Kubernetes automatically rolls back.
+- Infrastructure is optimized for actual usage—minimizing total cost of ownership.
 
-   Kubernetes handles pod health checks and ensures cluster is resilient for mission critical cases, providing
-   auto failover. K8s monitoring tools for health and availability and server resource usage.
+### 5. **Portability**
+- Deploy on-premise or to any major cloud provider.
+- Seamlessly supports multi-cloud environments.
 
-4. **Automatic rollbacks & rollouts**
-
-   Deployed from container registry. Ease of deployment and upgrades. Kubernetes can progressively roll out updates
-   and changes to your app or its configuration. If something goes wrong, Kubernetes can and will roll back the change.
-   Optimised infrastructure costs: Scale for usage rather than maximum anticipated capacity. Pricing model will reflect usage,
-   hence cost of ownership can be reduced to match actual demand.
-
-5. **Portability**
-
-   Can be deployed on premise or to a cloud provider. Portability and flexibility in multi-cloud environments.
-
-> This solution is specifically for users who are looking for a Spatial Enrich Dashboard  and Kubernetes based deployments.
+> **Note:**  
+> This solution is designed for users seeking a Kubernetes-based deployment for the Spatial Enrich Dashboard.
 
 > [!IMPORTANT]  
-> Please consider these helm charts as recommendations only. They come with predefined configurations that may not be the best fit for your needs. Configurations can be tweaked based on the use case and requirements.
+> The provided Helm charts come with default configurations and are **recommendations only**.  
+> You should tailor these configurations to match your specific use case and environment requirements.
 
-## Guides
-- Quickstart Guide: [EKS](./docs/guides/eks/QuickStartEKS.md) | [GKE](./docs/guides/gke/QuickStartGKE.md) | [AKS](./docs/guides/aks/QuickStartAKS.md)
-- Uninstall Guide: [EKS](./docs/guides/eks/UninstallGuide.md) | [GKE](./docs/guides/gke/UninstallGuide.md) | [AKS](./docs/guides/aks/UninstallGuide.md) 
+---
 
-## Installing Spatial Enrich dashboard Chart
-### 1. Prepare your environment
+## 📘 Guides
+
+- **Quickstart Guide:**  
+  [EKS](./docs/guides/eks/QuickStartEKS.md) | [GKE](./docs/guides/gke/QuickStartGKE.md) | [AKS](./docs/guides/aks/QuickStartAKS.md)
+
+- **Uninstall Guide:**  
+  [EKS](./docs/guides/eks/UninstallGuide.md) | [GKE](./docs/guides/gke/UninstallGuide.md) | [AKS](./docs/guides/aks/UninstallGuide.md)
+
+---
+
+## 📦 Installing the Spatial Enrich Dashboard Chart
+
+### 1️⃣ Prepare Your Environment
 Install Client tools required for installation. Click on the link to get steps for specific cloud platform:
 [EKS](./docs/guides/eks/QuickStartEKS.md#step-1-prepare-your-environment) | [GKE](./docs/guides/gke/QuickStartGKE.md#step-1-setup-cloud-shell) | [AKS](./docs/guides/aks/QuickStartAKS.md#step-1-prepare-your-environment)
 
-### 2. Create K8s cluster
-Create or use an existing K8s cluster. Click on the link to get steps for specific cloud platform:
+### 2️⃣ Create a Kubernetes Cluster
+ Create or use an existing K8s cluster. Click on the link to get steps for specific cloud platform:
 [EKS](./docs/guides/eks/QuickStartEKS.md#step-2-create-k8s-cluster-eks) | [GKE](./docs/guides/gke/QuickStartGKE.md#step-2-create-k8s-cluster-gke) | [AKS](./docs/guides/aks/QuickStartAKS.md#step-2-create-k8s-cluster-aks)
 
-### 3. Download spatial Enrich Dashboard Images
+### 3️⃣ Download Spatial Enrich Dashboard Images
 Download docker images and upload to own container registry. Click on the link to get steps for specific cloud platform:
 [EKS](./docs/guides/eks/QuickStartEKS.md#step-3-download-spatial-enrich-dashboard-docker-images) | [GKE](./docs/guides/gke/QuickStartGKE.md#step-3-download-spatial-enrich-dashboard-docker-images) | [AKS](./docs/guides/aks/QuickStartAKS.md#step-3-download-spatial-enrich-dashboard-docker-images)
 
-### 4. Install Spatial Enrich Dashboard Helm Chart
+### 4️⃣ Install the Helm Chart
 Deploy Spatial Enrich Dashboard chart to K8s cluster. Click on the link to get steps for specific cloud platform:
 [EKS](./docs/guides/eks/QuickStartEKS.md#step-4-installation-of-spatial-enrich-dashboard-helm-chart) | [GKE](./docs/guides/gke/QuickStartGKE.md#step-4-installation-of-spatial-enrich-dashboard-helm-chart) | [AKS](./docs/guides/aks/QuickStartAKS.md#step-4-installation-of-spatial-enrich-dashboard-helm-chart)
