@@ -73,7 +73,7 @@ Now click on **Create** → **Create a Kubernetes Cluster**
 Create a new Resource group `spatial-aks` for this AKS cluster
 
 Kubernetes cluster name -> `spatial32`\
-Kubernetes version -> `1.29.2`\
+Kubernetes version -> `1.33.0`\
 Node size -> Change size -> F32s_v2\
 Scale method -> `Manual`\
 Node count -> `1`
@@ -127,7 +127,7 @@ kubectl get nodes
 ```
 ```shell
 NAME                                STATUS   ROLES   AGE    VERSION
-aks-agentpool-39271417-vmss000000   Ready    <none>  106s   v1.29.2
+aks-agentpool-39271417-vmss000000   Ready    <none>  106s   v1.33.0
 ```
 
 ## Step 3: Download Spatial Enrich Dashboard Docker Images
@@ -204,14 +204,26 @@ helm install spatial-dashboard ~/spatial-enrich-dashboard/helm/superset \
 * ``imagePullSecrets``: The name of the secret holding Azure Container Registry (ACR)  credential information.
 
 Once you run Spatial Enrich Dashboard helm install/upgrade command, it might take few minutes to get ready for the first time. You can run the following command to check the creation of pods. Please wait until all the pods are in running state:
+
+```
+EXTERNAL_IP=$(kubectl get svc spatial-dashboard -n spatial-dashboard -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+echo "Access the dashboard at: http://$EXTERNAL_IP or https://$EXTERNAL_IP"
+```
+
+OR
+
+Run the below command to get the EXTERNAL-IP like the one showed below
+
 ```shell
 kubectl get pods -w --namespace spatial-dashboard 
 ```
 
+```bash
+NAME                 TYPE           CLUSTER-IP      EXTERNAL-IP                     PORT(S)        AGE
+spatial-dashboard    LoadBalancer   10.100.87.118   10.105.97.145      80:30080/TCP   5m
+```
+
 After all the pods in namespace 'spatial-dashboard' are in 'ready' status, launch dashboard in a browser with the URL `https://<your external ip>`, which can be found by running the command 
 
-> Note: If the application does not load on the http protocol try with https as well.
 
-```
-kubectl get svc -n spatial-dashboard
-```
+> Note: If the application does not load on the http protocol try with https as well.
