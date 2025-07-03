@@ -89,10 +89,13 @@ gcloud artifacts repositories describe spatial-repo --location=<your region>
 ### Load images to artifact registry
 
 Run the shell scripts to load images to artifact registry,
+
+> Note: Place the provided spatial-enrich-dashboard.tar file to this newly created directly <spatial_enrich_dashboard_docker_images_dir>.
 ```
+cd <spatial_enrich_dashboard_docker_images_dir>
 chmod a+x ~/spatial-enrich-dashboard/scripts/gke/push-images.sh
 ```
-> Note: Make sure to adjust the spatial-enrich-dashboard path with respect to your setup.
+> Note: Make sure to adjust the spatial-enrich-dashboard path with respect to <spatial_enrich_dashboard_docker_images_dir>.
 
 ```
 ~/spatial-enrich-dashboard/scripts/gke/push-images.sh <your registry url>
@@ -117,7 +120,7 @@ gcloud artifacts repositories delete spatial-repo --location=<your region>
 ```
 helm install spatial-dashboard ~/spatial-enrich-dashboard/helm/superset \
  -f ~/spatial-enrich-dashboard/helm/superset/values.yaml \
- --set "image.repository=<your registry url> \
+ --set "image.repository=<your registry url followed by repo name> \
  --set "image.tag=latest" \ 
  --set "imagePullSecrets=null" \  
 ```

@@ -4,8 +4,7 @@
 Make sure you have an AWS account with following permissions:  
   - create IAM roles  
   - create IAM policies  
-  - create EKS clusters (EC2 based)  
-  - create EFS filesystem  
+  - create EKS clusters (EC2 based)   
   
 ## Step 1: Prepare your environment
 To deploy Spatial Enrich Dashboard application in AWS EKS, install the following client tools:
@@ -72,7 +71,61 @@ You can create the EKS cluster or use an existing EKS cluster.
 
 ## Step 3: Download Spatial Enrich Dashboard Docker Images
 
-The Spatial Enrich Dashboard docker images need to be present in the ECR. If you haven't pushed the required docker images to ECR, then you you need to create the ECR with the repository name spatial-enrich-dashboard and push the provided images to the ECR.
+The Spatial Enrich Dashboard docker images need to be present in the ECR. If you haven't pushed the required docker images to ECR, then you you need to create the repository with name spatial-enrich-dashboard in ECR and push the provided images to the ECR.Then you can use a script [push-images](../../../scripts/eks/push-images.sh) to push the docker images to container registry.
+
+## 🧰 Prerequisites
+
+- AWS CLI installed and configured (`aws configure`)
+- Docker installed and running
+- IAM permissions to access ECR
+- An existing ECR repository (named spatial-enrich-dashboard)
+
+---
+## 1. 🔐 Authenticate Docker to ECR
+
+Run the following command to authenticate Docker with ECR on your local shell with AWS Cli pre-installer:
+
+```bash
+aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
+```
+
+Replace:
+- `<region>` with your AWS region (e.g., `us-east-1`)
+- `<aws_account_id>` with your 12-digit AWS account ID
+
+---
+
+## 2. 🗂️ Create an ECR Repository (if needed)
+
+If you haven't created a repository yet:
+
+```bash
+aws ecr create-repository --repository-name <repository-name> --region <region>
+```
+Replace:
+- `<region>` with your AWS region (e.g., `us-east-1`)
+- `<repository-name>` with spatial-enrich-dashboard
+---
+
+Run the shell script to push images to Elastic Container Registry:
+
+> Note: Place the provided spatial-enrich-dashboard.tar file to this newly created directly <spatial_enrich_dashboard_docker_images_dir>.
+
+```shell
+cd <spatial_enrich_dashboard_docker_images_dir>
+chmod a+x ~/spatial-enrich-dashboard/scripts/eks/push-images.sh
+~/spatial-enrich-dashboard/scripts/aks/push-images.sh [account_id].dkr.ecr.[aws_region].amazonaws.com
+```
+> Note: Make sure to adjust the spatial-enrich-dashboard path with respect to <spatial_enrich_dashboard_docker_images_dir>.
+
+List images in the registry:
+\
+``aws ecr describe-images --repository-name <repository-name> --region <region>``
+Replace:
+- `<region>` with your AWS region (e.g., `us-east-1`)
+- `<repository-name>` with spatial-enrich-dashboard
+
+spatial-enrich-dashboard docker images which will be pushed to container registry
 
 ## Step 4: Installation of Spatial Enrich Dashboard Helm Chart
 

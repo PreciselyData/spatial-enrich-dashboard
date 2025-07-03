@@ -144,15 +144,18 @@ az login
 az acr login --name <azure_container_registry>
 ```
 
-> Note: Unzip the downloaded docker images to a directory <spatial_analytics_docker_images_dir> so that it contains tar file.
+> Note: Unzip the downloaded docker images to a directory <spatial_enrich_dashboard_docker_images_dir> so that it contains tar file.
 
 Run the shell script to push images to Azure Container Registry:
+
+> Note: Place the provided spatial-enrich-dashboard.tar file to this newly created directly <spatial_enrich_dashboard_docker_images_dir>.
+
 ```shell
-cd <spatial_analytics_docker_images_dir>
+cd <spatial_enrich_dashboard_docker_images_dir>
 chmod a+x ~/spatial-enrich-dashboard/scripts/aks/push-images.sh
 ~/spatial-enrich-dashboard/scripts/aks/push-images.sh <azure_container_registry>.azurecr.io
 ```
-> Note: Make sure to adjust the spatial-enrich-dashboard path with respect to your setup.
+> Note: Make sure to adjust the spatial-enrich-dashboard path with respect to <spatial_enrich_dashboard_docker_images_dir>.
 
 List images in the registry:
 \
