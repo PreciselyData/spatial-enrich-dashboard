@@ -151,6 +151,29 @@ aws ecr describe-images --repository-name spatial-enrich-dashboard --region <reg
 
 ## 📊 Step 4: Install the Helm Chart
 
+## 🔑 Step 4.1: Enable Precisely DIS Services (Optional)
+
+The Spatial Enrich Dashboard can connect to **Precisely Data Integrity Suite (DIS)** for additional enrichment services. To enable this, pass your DIS credentials through the `extraEnv` section of the Helm values.
+
+### Update `values.yaml`
+
+Edit your Helm chart values file:
+
+```yaml
+extraEnv:
+  DIS_URL: "https://api.precisely.com/dis"
+  DIS_KEY: "<your-dis-key>"
+  DIS_SECRET: "<your-dis-secret>"
+```
+
+---
+
+✅ After applying this, the Spatial Enrich Dashboard will load with Precisely DIS-powered enrichment services enabled.  
+
+---
+
+### 🛠️ Step 4.2: Deploy Helm Chart
+
 ### 1️⃣ Create Kubernetes Namespace
 
 ```bash

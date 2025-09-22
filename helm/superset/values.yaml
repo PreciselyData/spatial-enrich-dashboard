@@ -67,7 +67,12 @@ envFromSecret: '{{ template "superset.fullname" . }}-env'
 envFromSecrets: []
 
 # -- Extra environment variables that will be passed into pods
-extraEnv: {}
+extraEnv: {
+  # Add Precisely DIS credentials to enable it in dashboard
+  # DIS_URL: "",
+  # DIS_KEY: "",
+  # DIS_SECRET: ""
+}
   # Different gunicorn settings, refer to the gunicorn documentation
   # https://docs.gunicorn.org/en/stable/settings.html#
   # These variables are used as Flags at the gunicorn startup
