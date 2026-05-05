@@ -818,7 +818,7 @@ postgresql:
     database: superset
 
   image:
-    tag: "14.6.0-debian-11-r13"
+    tag: "18.3.0"
 
   ## PostgreSQL Primary parameters
   primary:
@@ -856,6 +856,10 @@ redis:
   ##
   ## Set architecture to standalone/replication
   architecture: standalone
+  ##
+  ## Image override (default chart tag was removed from Docker Hub)
+  image:
+    tag: "8.6.2"
   ##
   ## Auth configuration:
   ##
