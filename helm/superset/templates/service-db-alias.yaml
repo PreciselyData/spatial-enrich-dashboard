@@ -1,0 +1,17 @@
+{{/*
+  Alias service so that "db" resolves to the Helm-managed PostgreSQL,
+  matching the docker-compose service name used by saved database connections.
+*/}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ template "superset.name" . }}
+    chart: {{ template "superset.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: ExternalName
+  externalName: {{ .Release.Name }}-postgresql.{{ .Release.Namespace }}.svc.cluster.local
