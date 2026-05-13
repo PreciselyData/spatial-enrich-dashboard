@@ -24,7 +24,7 @@
 # To update it, install helm-docs and run helm-docs from the root of this chart
 
 # -- Provide a name to override the name of the chart
-nameOverride: ~
+nameOverride: dashboard
 # -- Provide a name to override the full names of resources
 fullnameOverride: ~
 
@@ -183,6 +183,17 @@ configOverrides:
   secret: |
     # Generate your own secret key for encryption. Use `openssl rand -base64 42` to generate a good key
     SECRET_KEY = 'uHqeq8d44+7LylXydf9EJcJkGPehKw4IzDhnw8qZ2FI7ypJHbLzyvA=='
+  database_pool: |
+    # Increase default pool for all database connections
+    DEFAULT_DB_EXTRA = {
+        "engine_params": {
+            "pool_size": 20,
+            "max_overflow": 40,
+            "pool_timeout": 60,
+            "pool_recycle": 3600,
+            "pool_pre_ping": True,
+        }
+    }
 
 # -- Same as above but the values are files
 configOverridesFiles: {}
@@ -818,7 +829,7 @@ postgresql:
     database: superset
 
   image:
-    tag: "18.3.0"
+    tag: "latest"
 
   ## PostgreSQL Primary parameters
   primary:
@@ -859,7 +870,7 @@ redis:
   ##
   ## Image override (default chart tag was removed from Docker Hub)
   image:
-    tag: "8.6.2"
+    tag: "latest"
   ##
   ## Auth configuration:
   ##
